@@ -6,8 +6,10 @@ import androidx.lifecycle.coroutineScope
 import androidx.room.Room.databaseBuilder
 import com.quanz.qualisapp.R
 import com.quanz.qualisapp.db.QualisDatabase
+import com.quanz.qualisapp.db.entities.ConferenciaEntity
+import com.quanz.qualisapp.db.entities.CorrelacaoComOutraAreaEntity
 import com.quanz.qualisapp.db.entities.PeriodicoEntity
-import com.quanz.qualisapp.service.PeriodicosData
+import com.quanz.qualisapp.service.models.PeriodicosData
 import com.quanz.qualisapp.service.QualisAppService
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
@@ -43,17 +45,56 @@ class MainActivity : AppCompatActivity() {
             savePeriodico(periodicos.periodico)
         }
     }
-    private fun savePeriodico(periodicos: List<List<String>>) {
+
+    fun getConferencia() {
         lifecycle.coroutineScope.launch {
-            for (periodico in periodicos) {
-                qualisTable().insertPeriodico(
-                    PeriodicoEntity(
-                        issn = periodico[0],
-                        nome = periodico[1],
-                        extratoCapes = periodico[2]
-                    )
+            val conferencias = service.getConferencias()
+            saveConferencia(conferencias.conferencia)
+        }
+    }
+
+    fun getCorrelacoes(){
+        lifecycle.coroutineScope.launch {
+            val correlacoes = service.getCorrelacaoOutrasAreas()
+            saveCorrelacoes(correlacoes.correlacaoComOutrasAreas)
+        }
+    }
+
+    private suspend fun saveCorrelacoes(correlacoes: List<List<String>>) {
+        for (correlacao in correlacoes){
+            qualisTable().insertCorrelacaoComOutraArea(
+                CorrelacaoComOutraAreaEntity(
+                    issn = correlacao[0],
+                    periodico = correlacao[1],
+                    extratoCapesComp = correlacao[2],
+                    extratoCapes = correlacao[3],
+                    area = correlacao[4]
                 )
-            }
+            )
+        }
+    }
+
+    private suspend fun saveConferencia(conferencias: List<List<String>>) {
+        for (conferencia in conferencias) {
+            qualisTable().insertConferencia(
+                ConferenciaEntity(
+                    siglas = conferencia[0],
+                    nome = conferencia[1],
+                    extratoCapes = conferencia[2]
+                )
+            )
+        }
+    }
+
+    private suspend fun savePeriodico(periodicos: List<List<String>>) {
+        for (periodico in periodicos) {
+            qualisTable().insertPeriodico(
+                PeriodicoEntity(
+                    issn = periodico[0],
+                    nome = periodico[1],
+                    extratoCapes = periodico[2]
+                )
+            )
         }
     }
 

@@ -1,6 +1,8 @@
 package com.quanz.qualisapp.service
 
-import com.google.gson.annotations.SerializedName
+import com.quanz.qualisapp.service.models.ConferenciasData
+import com.quanz.qualisapp.service.models.CorrelacaoComOutrasAreasData
+import com.quanz.qualisapp.service.models.PeriodicosData
 import retrofit2.http.GET
 
 
@@ -9,13 +11,9 @@ interface QualisAppService {
     suspend fun getPeriodicos(): PeriodicosData
 
     @GET("todos2.json")
-    suspend fun getCorrelacaoOutrasAreas(): List<List<String>>
+    suspend fun getCorrelacaoOutrasAreas(): CorrelacaoComOutrasAreasData
 
     @GET("qualis_conferencias_2016.json")
-    suspend fun getConferencias(): List<List<String>>
+    suspend fun getConferencias(): ConferenciasData
 }
 
-data class PeriodicosData(
-    @SerializedName("data")
-    val periodico: List<List<String>>
-)

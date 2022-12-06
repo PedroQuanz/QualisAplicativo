@@ -5,18 +5,21 @@ plugins {
 
 android {
     namespace 'com.quanz.qualisapp'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.quanz.qualisapp"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    configurations {
+        cleanedAnnotations
+        compile.exclude group: 'org.jetbrains' , module:'annotations'
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -33,13 +36,13 @@ android {
 }
 
 dependencies {
-    implementation("androidx.room:room-runtime:2.4.1")
-    annotationProcessor("androidx.room:room-compiler:2.4.1")
-    implementation("androidx.room:room-compiler:2.4.1")
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
+    implementation("androidx.room:room-runtime:2.4.3")
+    annotationProcessor("androidx.room:room-compiler:2.4.3")
+    //implementation("androidx.room:room-compiler:2.4.3")
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
