@@ -1,15 +1,12 @@
 package com.quanz.qualisapp.ui
 
 import android.os.Bundle
-import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.quanz.qualisapp.R
 import com.quanz.qualisapp.repository.QualisRepository
-import com.quanz.qualisapp.service.QualisAppService
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -45,9 +42,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun renderizaLista(){
+        // TODO: Recuperar informações do repository
+    }
+
     companion object {
         const val BASE_URL = "https://qualis.ic.ufmt.br/"
         const val DATABASE_NAME = "DATABASE_NAME"
     }
-
 }

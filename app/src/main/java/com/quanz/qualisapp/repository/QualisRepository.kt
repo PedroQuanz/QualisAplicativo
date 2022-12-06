@@ -24,6 +24,7 @@ class QualisRepository(
     }
 
     suspend fun getPeriodico() {
+            qualisTable().selectAllPeriodicos()
         val periodicos = service.getPeriodicos()
         savePeriodico(periodicos.periodico)
     }
