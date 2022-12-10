@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.quanz.qualisapp.databinding.ItemPeriodicoBinding
+import com.quanz.qualisapp.databinding.ItemTresColunasBinding
 
 /**
  * Adapters são responsáveis por adaptar os dados para um viewHolder
@@ -15,7 +16,7 @@ class PeriodicosAdapter(private val periodicosList: List<List<String>>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeriodicosViewHolder {
 
         return PeriodicosViewHolder(
-            ItemPeriodicoBinding.inflate(
+            ItemTresColunasBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -28,14 +29,14 @@ class PeriodicosAdapter(private val periodicosList: List<List<String>>) :
         val periodico = periodicosList[position]
 
         with(holder.itemBinding) {
-            texto0.text = periodico[0]
-            texto1.text = periodico[1]
-            texto2.text = periodico[2]
+            txtColunaUm.text = periodico[0]
+            txtColunaDois.text = periodico[1]
+            txtColunaTres.text = periodico[2]
         }
     }
 
     override fun getItemCount(): Int = periodicosList.size
 
-    inner class PeriodicosViewHolder(val itemBinding: ItemPeriodicoBinding) :
+    inner class PeriodicosViewHolder(val itemBinding: ItemTresColunasBinding) :
         ViewHolder(itemBinding.root)
 }

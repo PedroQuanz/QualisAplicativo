@@ -17,11 +17,10 @@ class QualisRepository(
 
     private val service: QualisAppService = montaRetrofit().create(QualisAppService::class.java)
 
-    private val qualisDatabase by lazy {
+    private val qualisDatabase =
         Room.databaseBuilder(
             context, QualisDatabase::class.java, MainActivity.DATABASE_NAME
         ).build()
-    }
 
     suspend fun getPeriodico() {
             qualisTable().selectAllPeriodicos()
@@ -29,10 +28,16 @@ class QualisRepository(
         savePeriodico(periodicos.periodico)
     }
 
-    suspend fun getConferencia() {
-        val conferencias = service.getConferencias()
-        saveConferencia(conferencias.conferencia)
-
+    suspend fun getConferencia():List<List<String>> {
+        val conferencias = qualisTable().selectAllConferencias()
+        if (conferencias.isEmpty()){
+            val confs = service.getConferencias()
+            saveConferencia(confs.conferencia)
+            return confs.conferencia
+        }
+        return conferencias.map {
+            listOf(it.siglas, it.nome, it.extratoCapes)
+        }
     }
 
     suspend fun getCorrelacoes() {

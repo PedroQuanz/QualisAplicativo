@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.quanz.qualisapp.databinding.ItemConferenciaBinding
+import com.quanz.qualisapp.databinding.ItemTresColunasBinding
 
 class ConferenciasAdapter(private val conferenciasList: List<List<String>>) :
     RecyclerView.Adapter<ConferenciasAdapter.ConferenciasViewHolder>() {
@@ -12,7 +12,7 @@ class ConferenciasAdapter(private val conferenciasList: List<List<String>>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): com.quanz.qualisapp.adapters.ConferenciasAdapter.ConferenciasViewHolder {
 
         return ConferenciasViewHolder(
-            ItemConferenciaBinding.inflate(
+            ItemTresColunasBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -24,13 +24,13 @@ class ConferenciasAdapter(private val conferenciasList: List<List<String>>) :
         val conferencia = conferenciasList[position]
 
         with(holder.itemBinding) {
-            texto0.text = conferencia[0]
-            texto1.text = conferencia[1]
-            texto2.text = conferencia[2]
+            txtColunaUm.text = conferencia[0]
+            txtColunaDois.text = conferencia[1]
+            txtColunaTres.text = conferencia[2]
         }
     }
     override fun getItemCount(): Int = conferenciasList.size
 
-    inner class ConferenciasViewHolder(val itemBinding: ItemConferenciaBinding) :
+    inner class ConferenciasViewHolder(val itemBinding: ItemTresColunasBinding) :
         RecyclerView.ViewHolder(itemBinding.root)
 }

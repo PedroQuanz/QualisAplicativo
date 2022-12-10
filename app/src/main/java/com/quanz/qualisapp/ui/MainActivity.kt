@@ -1,22 +1,41 @@
 package com.quanz.qualisapp.ui
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.quanz.qualisapp.R
+import com.quanz.qualisapp.adapters.ConferenciasAdapter
+import com.quanz.qualisapp.databinding.ActivityMainBinding
 import com.quanz.qualisapp.repository.QualisRepository
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    private val repository: QualisRepository = QualisRepository(this)
+    private lateinit var binding: ActivityMainBinding
+
+    private lateinit var repository: QualisRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        repository = QualisRepository(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        getAllinformacoes()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        //getAllinformacoes()
+        getConferencias()
+    }
+
+    private fun getConferencias(){
+        lifecycleScope.launch {
+            val conferencias = repository.getConferencia()
+            binding.lista.adapter = ConferenciasAdapter(conferencias)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
