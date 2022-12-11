@@ -40,6 +40,7 @@ interface QualisDao {
     suspend fun deleteAllConferencias(conferenciasData: ConferenciasData)
 
     @Query("SELECT * FROM CorrelacaoComOutraArea")
+    suspend fun selectAllCorrelacoes() : List<CorrelacaoComOutraAreaEntity>
 
     @Insert(onConflict = REPLACE, entity = CorrelacaoComOutraAreaEntity::class)
     suspend fun insertCorrelacaoComOutraArea(vararg correlacaoComOutraArea: CorrelacaoComOutraAreaEntity)

@@ -2,7 +2,7 @@ package com.quanz.qualisapp.service.models
 
 import com.google.gson.annotations.SerializedName
 
-data class CorrelacaoComOutrasAreasData(
+data class CorrelacoesData(
     @SerializedName("data")
-    val correlacaoComOutrasAreas: List<List<String>>
+    val correlacoes: List<List<String>>
 )

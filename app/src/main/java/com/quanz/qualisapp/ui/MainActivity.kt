@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getConferencias(){
         lifecycleScope.launch {
-            val conferencias = repository.getConferencia()
+            val conferencias = /*repository.getConferencia()*/listOf(listOf("String"))
             binding.lista.adapter = ConferenciasAdapter(conferencias)
         }
     }
@@ -55,9 +55,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun getAllinformacoes() {
         lifecycleScope.launch {
-            repository.getPeriodico()
-            repository.getConferencia()
-            repository.getCorrelacoes()
+//            repository.getPeriodico()
+//            repository.getConferencia()
+//            repository.getCorrelacoes()
         }
     }
 

@@ -18,5 +18,5 @@ Database é onde se prove acesso a database
     exportSchema = false
 )
 abstract class QualisDatabase : RoomDatabase() {
-    abstract fun qualisDao(): QualisDao
+//    abstract fun qualisDao(): QualisDao
 }
