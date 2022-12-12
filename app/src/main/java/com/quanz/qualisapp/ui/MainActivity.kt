@@ -13,16 +13,19 @@ import com.quanz.qualisapp.R
 import com.quanz.qualisapp.adapters.ConferenciasAdapter
 import com.quanz.qualisapp.databinding.ActivityMainBinding
 import com.quanz.qualisapp.repository.QualisRepository
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var repository: QualisRepository
+    @Inject
+    lateinit var repository: QualisRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        repository = QualisRepository(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root

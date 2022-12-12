@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import com.quanz.qualisapp.db.entities.ConferenciaEntity
-import com.quanz.qualisapp.db.entities.CorrelacaoComOutraAreaEntity
+import com.quanz.qualisapp.db.entities.Correlacoes
 import com.quanz.qualisapp.db.entities.PeriodicoEntity
 import com.quanz.qualisapp.service.models.ConferenciasData
 import com.quanz.qualisapp.service.models.PeriodicosData
@@ -15,6 +15,9 @@ Data access object(dao) é onde se cria o CRUD padrao e querys a serem executada
  */
 @Dao
 interface QualisDao {
+
+    ///////////////////
+
     @Query("SELECT * FROM periodico")
     suspend fun selectAllPeriodicos():List<PeriodicoEntity>
 
@@ -24,8 +27,7 @@ interface QualisDao {
     @Delete
     suspend fun deletePeriodico(periodicoEntity: PeriodicoEntity)
 
-    @Query("DELETE FROM periodico")
-    suspend fun deleteAllPeriodico(periodicosData: PeriodicosData)
+    ///////////////////
 
     @Query("SELECT * FROM conferencia")
     suspend fun selectAllConferencias():List<ConferenciaEntity>
@@ -36,12 +38,14 @@ interface QualisDao {
     @Delete
     suspend fun deleteConferencia(conferenciaEntity: ConferenciaEntity)
 
-    @Query("DELETE FROM conferencia")
-    suspend fun deleteAllConferencias(conferenciasData: ConferenciasData)
+    ///////////////////
 
     @Query("SELECT * FROM CorrelacaoComOutraArea")
-    suspend fun selectAllCorrelacoes() : List<CorrelacaoComOutraAreaEntity>
+    suspend fun selectAllCorrelacoes() : List<Correlacoes>
 
-    @Insert(onConflict = REPLACE, entity = CorrelacaoComOutraAreaEntity::class)
-    suspend fun insertCorrelacaoComOutraArea(vararg correlacaoComOutraArea: CorrelacaoComOutraAreaEntity)
+    @Insert(onConflict = REPLACE, entity = Correlacoes::class)
+    suspend fun insertCorrelacaoComOutraArea(vararg correlacaoComOutraArea: Correlacoes)
+
+    @Delete
+    suspend fun deleteCorrelacao(correlacoes: Correlacoes)
 }

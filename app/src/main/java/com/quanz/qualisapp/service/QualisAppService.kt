@@ -16,4 +16,3 @@ interface QualisAppService {
     @GET("qualis_conferencias_2016.json")
     suspend fun getConferencias(): ConferenciasData
 }
-
