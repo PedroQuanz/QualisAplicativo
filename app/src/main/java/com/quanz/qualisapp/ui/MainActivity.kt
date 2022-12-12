@@ -1,12 +1,8 @@
 package com.quanz.qualisapp.ui
 
-import android.content.Context
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.quanz.qualisapp.R
@@ -34,9 +30,10 @@ class MainActivity : AppCompatActivity() {
         getConferencias()
     }
 
-    private fun getConferencias(){
+    private fun getConferencias() {
         lifecycleScope.launch {
-            val conferencias = /*repository.getConferencia()*/listOf(listOf("String"))
+            val conferencias = /*repository.getConferencia()*/
+                listOf(listOf("String", "String", "String"))
             binding.lista.adapter = ConferenciasAdapter(conferencias)
         }
     }
@@ -64,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun renderizaLista(){
+    private fun renderizaLista() {
         // TODO: Recuperar informações do repository
     }
 

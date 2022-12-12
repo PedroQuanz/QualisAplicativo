@@ -4,6 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.quanz.qualisapp.db.dao.QualisDao
 import com.quanz.qualisapp.db.entities.Correlacoes
+import javax.inject.Inject
 import com.quanz.qualisapp.db.entities.ConferenciaEntity as Conferencias
 import com.quanz.qualisapp.db.entities.PeriodicoEntity as Periodicos
 
@@ -14,5 +15,5 @@ import com.quanz.qualisapp.db.entities.PeriodicoEntity as Periodicos
     exportSchema = false
 )
 abstract class QualisDatabase : RoomDatabase() {
-    abstract fun qualisDao(): QualisDao
+    abstract fun qualisDao() : QualisDao
 }
