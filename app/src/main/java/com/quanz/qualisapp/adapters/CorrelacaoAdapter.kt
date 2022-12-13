@@ -20,7 +20,6 @@ class CorrelacoesAdapter(private val correlacoesList: List<List<String>>) :
         )
     }
 
-
     override fun onBindViewHolder(holder: CorrelacoesViewHolder, position: Int) {
 
         val correlacao = correlacoesList[position]

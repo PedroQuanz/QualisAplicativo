@@ -26,22 +26,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
         atualizarTudo()
+
         getConferencias()
-    }
-
-    private fun atualizarTudo(){
-        lifecycleScope.launch {
-            repository.atualizarTudo()
-        }
-    }
-
-    private fun getConferencias() {
-        lifecycleScope.launch {
-            val conferencias = /*repository.getConferencia()*/
-                listOf(listOf("String", "String", "String"))
-            binding.lista.adapter = repository.recuperaConferencias()
-        }
+        getCorrelacoes()
+        getPeriodicos()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -52,26 +42,31 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.botao_atualizar -> {
-                getAllinformacoes()
+                atualizarTudo()
                 true
             }
             else -> false
         }
     }
 
-    private fun getAllinformacoes() {
+    private fun getConferencias() {
         lifecycleScope.launch {
-//            repository.getPeriodico()
-//            repository.getConferencia()
-//            repository.getCorrelacoes()
+
+            val conferenciasList = repository.recuperaConferencias()
+
+            binding.lista.adapter = ConferenciasAdapter(conferenciasList)
         }
     }
 
-    private fun renderizaLista() {
-        // TODO: Recuperar informações do repository
+    private fun getCorrelacoes() {
+        TODO("usar a mesma lógica do método getConferencias")
     }
 
-    companion object {
-        const val DATABASE_NAME = "DATABASE_NAME"
+    private fun getPeriodicos() {
+        TODO("usar a mesma lógica do método getConferencias")
+    }
+
+    private fun atualizarTudo(){
+        lifecycleScope.launch { repository.atualizarTudo() }
     }
 }

@@ -25,7 +25,8 @@ interface QualisRepository {
 
     suspend fun atualizarTudo()
 
-    suspend fun recuperaConferencias(): ConferenciasAdapter
+    // TODO: PEDRO mudar o retorno dessas funçoes para List<List<String>>
+    suspend fun recuperaConferencias(): List<List<String>>
     suspend fun recuperaPeriodicos(): PeriodicosAdapter
     suspend fun recuperaCorrelacoes(): CorrelacoesAdapter
 }
@@ -96,7 +97,7 @@ class QualisRepositoryImpl @Inject constructor(
        salvaCorrelacoes(correlacoes)
     }
 
-    override suspend fun recuperaConferencias(): ConferenciasAdapter {
+    override suspend fun recuperaConferencias(): List<List<String>> {
         val conferencias = qualisDatabase.qualisDao().selectAllConferencias()
         val conferenciaList = conferencias.map {
             listOf(
@@ -105,7 +106,7 @@ class QualisRepositoryImpl @Inject constructor(
                 it.extratoCapes
             )
         }
-       return ConferenciasAdapter(conferenciaList)
+       return conferenciaList
     }
 
     override suspend fun recuperaPeriodicos(): PeriodicosAdapter {

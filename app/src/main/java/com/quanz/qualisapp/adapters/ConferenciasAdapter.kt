@@ -9,7 +9,10 @@ import com.quanz.qualisapp.databinding.ItemTresColunasBinding
 class ConferenciasAdapter(private val conferenciasList: List<List<String>>) :
     RecyclerView.Adapter<ConferenciasAdapter.ConferenciasViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): com.quanz.qualisapp.adapters.ConferenciasAdapter.ConferenciasViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ConferenciasAdapter.ConferenciasViewHolder {
 
         return ConferenciasViewHolder(
             ItemTresColunasBinding.inflate(
@@ -19,7 +22,11 @@ class ConferenciasAdapter(private val conferenciasList: List<List<String>>) :
             )
         )
     }
-    override fun onBindViewHolder(holder: ConferenciasAdapter.ConferenciasViewHolder, position: Int) {
+
+    override fun onBindViewHolder(
+        holder: ConferenciasAdapter.ConferenciasViewHolder,
+        position: Int
+    ) {
 
         val conferencia = conferenciasList[position]
 
@@ -29,8 +36,9 @@ class ConferenciasAdapter(private val conferenciasList: List<List<String>>) :
             txtColunaTres.text = conferencia[2]
         }
     }
+
     override fun getItemCount(): Int = conferenciasList.size
 
     inner class ConferenciasViewHolder(val itemBinding: ItemTresColunasBinding) :
-        RecyclerView.ViewHolder(itemBinding.root)
+        ViewHolder(itemBinding.root)
 }
