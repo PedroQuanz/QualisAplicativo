@@ -6,10 +6,9 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import com.quanz.qualisapp.db.entities.ConferenciaEntity
-import com.quanz.qualisapp.db.entities.Correlacoes
+import com.quanz.qualisapp.db.entities.CorrelacoesEntity
 import com.quanz.qualisapp.db.entities.PeriodicoEntity
-import com.quanz.qualisapp.service.models.ConferenciasData
-import com.quanz.qualisapp.service.models.PeriodicosData
+
 /*
 Data access object(dao) é onde se cria o CRUD padrao e querys a serem executadas pelo app
  */
@@ -41,11 +40,11 @@ interface QualisDao {
     ///////////////////
 
     @Query("SELECT * FROM CorrelacaoComOutraArea")
-    suspend fun selectAllCorrelacoes() : List<Correlacoes>
+    suspend fun selectAllCorrelacoes() : List<CorrelacoesEntity>
 
-    @Insert(onConflict = REPLACE, entity = Correlacoes::class)
-    suspend fun insertCorrelacaoComOutraArea(vararg correlacaoComOutraArea: Correlacoes)
+    @Insert(onConflict = REPLACE, entity = CorrelacoesEntity::class)
+    suspend fun insertCorrelacaoComOutraArea(vararg correlacaoComOutraArea: CorrelacoesEntity)
 
     @Delete
-    suspend fun deleteCorrelacao(correlacoes: Correlacoes)
+    suspend fun deleteCorrelacao(correlacoes: CorrelacoesEntity)
 }

@@ -11,7 +11,7 @@ data class ConferenciaEntity(
     val id: Int = 0,
 
     @ColumnInfo(name = "siglas")
-    val siglas: String,
+    val sigla: String,
 
     @ColumnInfo(name = "nome")
     val nome: String,

@@ -26,15 +26,21 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        //getAllinformacoes()
+        atualizarTudo()
         getConferencias()
+    }
+
+    private fun atualizarTudo(){
+        lifecycleScope.launch {
+            repository.atualizarTudo()
+        }
     }
 
     private fun getConferencias() {
         lifecycleScope.launch {
             val conferencias = /*repository.getConferencia()*/
                 listOf(listOf("String", "String", "String"))
-            binding.lista.adapter = ConferenciasAdapter(conferencias)
+            binding.lista.adapter = repository.recuperaConferencias()
         }
     }
 
@@ -66,7 +72,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val BASE_URL = "https://qualis.ic.ufmt.br/"
         const val DATABASE_NAME = "DATABASE_NAME"
     }
 }

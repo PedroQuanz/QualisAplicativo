@@ -25,13 +25,14 @@ abstract class QualisModule {
     companion object {
 
         private const val DATABASE_NAME = "QUALIS_DATABASE_NAME"
+        private const val BASE_URL = "https://qualis.ic.ufmt.br/"
 
         @Provides
         fun montaRetrofit(): Retrofit {
             return Retrofit
                 .Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(MainActivity.BASE_URL)
+                .baseUrl(BASE_URL)
                 .build()
         }
 

@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class ConferenciasData(
     @SerializedName("data")
-    val conferencia: List<List<String>>
+    val conferencias: List<List<String>>
 )
