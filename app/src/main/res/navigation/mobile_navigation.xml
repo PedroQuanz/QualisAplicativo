@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.quanz.qualisapp.ui.fragments.CorrelacoesFragment"
+        android:label="@string/title_periodicos"
+        tools:layout="@layout/fragment_correlacoes" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.quanz.qualisapp.ui.fragments.PeriodicosFragment"
+        android:label="@string/title_conferencias"
+        tools:layout="@layout/fragment_periodicos" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.quanz.qualisapp.ui.fragments.ConferenciasFragment"
+        android:label="@string/title_correlacoes"
+        tools:layout="@layout/fragment_conferencias" />
+</navigation>

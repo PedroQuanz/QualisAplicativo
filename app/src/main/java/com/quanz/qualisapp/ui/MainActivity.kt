@@ -5,6 +5,11 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.quanz.qualisapp.R
 import com.quanz.qualisapp.adapters.ConferenciasAdapter
 import com.quanz.qualisapp.databinding.ActivityMainBinding
@@ -25,13 +30,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
+
+        val navView: BottomNavigationView = binding.navView
+
         setContentView(view)
 
         atualizarTudo()
 
-        getConferencias()
-        getCorrelacoes()
-        getPeriodicos()
+        val navController = findNavController(R.id.nav_host_fragment_activity_sample)
+
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -49,22 +63,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getConferencias() {
-        lifecycleScope.launch {
 
-            val conferenciasList = repository.recuperaConferencias()
-
-            binding.lista.adapter = ConferenciasAdapter(conferenciasList)
-        }
-    }
-
-    private fun getCorrelacoes() {
-        TODO("usar a mesma lógica do método getConferencias")
-    }
-
-    private fun getPeriodicos() {
-        TODO("usar a mesma lógica do método getConferencias")
-    }
 
     private fun atualizarTudo(){
         lifecycleScope.launch { repository.atualizarTudo() }
